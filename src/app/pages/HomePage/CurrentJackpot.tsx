@@ -2,7 +2,7 @@ import { getAmountJackPot } from 'helpers';
 import styled from 'styled-components/macro';
 import { useEffect, useState } from 'react';
 import { useRetrieveJackPots } from 'services/jackpots';
-
+import { COLORS } from 'styles/global-colors';
 interface CurrentJackpotProps {
   gameId: string;
 }
@@ -25,32 +25,23 @@ export function CurrentJackpot(props: CurrentJackpotProps) {
     <>
       {amount > 0 && (
         <Wrapper>
-          <Overlay className="overlay-jackpot"></Overlay>
-          <Amount className="amount-jackpot">{amount}</Amount>
+          <span className="amount-jackpot">${amount}</span>
         </Wrapper>
       )}
     </>
   );
 }
+
 const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const Overlay = styled.div`
   position: absolute;
   bottom: 0;
-  background: black;
-  opacity: 0.5;
-  width: 93%;
   left: 0;
-  text-align: center;
-  height: 20px;
-  border-bottom-left-radius: 8px;
-  border-bottom-right-radius: 8px;
-`;
-const Amount = styled.span`
-  position: absolute;
-  bottom: 0;
-  color: white;
+  right: 0;
+  background: rgba(0,0,0, 0.5);
+  .amount-jackpot {
+    color: ${COLORS.grey20};
+    font-size: 11px;
+    padding: 5px 10px;
+    line-height: 1;
+  }
 `;

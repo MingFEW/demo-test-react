@@ -15,6 +15,7 @@ export function GameList() {
   let newGames = Array<Game>();
   const query = qs.parse(location.search);
   const currentCate = query?.categories;
+
   if (currentCate !== 'other') {
     newGames = filterByCateName(games, query?.categories);
   } else {
@@ -23,6 +24,7 @@ export function GameList() {
   if (!Boolean(query?.categories)) {
     newGames = games;
   }
+
   const renderRibbonImage = (game: Game): JSX.Element | null => {
     const currentRibbon = getRibbonByCate(game, currentCate);
     if (currentRibbon === RIBBON_NEW_VALUE) {
@@ -65,22 +67,25 @@ const Container = styled.div`
   flex-wrap: wrap;
   justify-content: center;
 `;
+
 const ButtonPlay = styled.button`
   background: linear-gradient(266.53deg, #3fc6c6 0%, #8dc63f 100%);
-  border-radius: 8px;
+  border-radius: 6px;
   color: white;
   padding: 4px 18px;
   outline: none;
   border: none;
 `;
+
 const Ribbon = styled.span<{ imgUrl: string }>`
   position: absolute;
-  right: 8px;
-  width: 72px;
-  height: 72px;
+  right: 0;
+  top: 0;
+  width: 60px;
+  height: 60px;
   background: ${props =>
-    `url(${props?.imgUrl && props?.imgUrl}) no-repeat top center`};
-  background-size: 56px;
+    `url(${props?.imgUrl && props?.imgUrl}) no-repeat top right`};
+  background-size: 60px;
 `;
 const CardGroup = styled.div`
   width: calc(100% - 16px);
@@ -111,30 +116,20 @@ const Overlay = styled.div`
 `;
 
 const Card = styled.a`
-  width: 20%;
-  transform: transform 0.25s ease-out;
+  display: block;
+  transition: transform 0.25s ease-out;
   position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
   &:hover {
-    padding-right: 0px;
-    cursor: pointer;
-    -webkit-transform: scale(1.02);
-    -ms-transform: scale(1.02);
-    transform: scale(1.02);
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
     z-index: 2;
-    .display-card-group {
-      visibility: visible;
-      width: 100%;
-    }
-    .ribbon {
-      right: -8px;
-    }
-    .overlay-jackpot {
-      display: none;
-    }
   }
   img.game-pic {
     width: 100%;
     height: auto;
-    border-radius: 8px
   }
 `;
