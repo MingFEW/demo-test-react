@@ -42,7 +42,7 @@ export function GameList() {
           <img
             src={game?.image}
             alt={game.name}
-            style={{ width: '100%', borderRadius: '8px' }}
+            className="game-pic"
           />
           {renderRibbonImage(game)}
           <CardGroup className="cardGroup">
@@ -54,7 +54,7 @@ export function GameList() {
       ))}
       {newGames?.length <= 0 && (
         <div className="pure-u-1-1">
-          <p>No game found</p>
+          <h4>No game found</h4>
         </div>
       )}
     </div>
