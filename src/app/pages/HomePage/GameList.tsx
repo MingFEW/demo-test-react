@@ -1,10 +1,11 @@
-import { RIBBON_NEW_VALUE, RIBBON_TOP_VALUE } from 'app/constants';
-import { Game } from 'app/models/game';
-import { useGames } from 'contexts';
-import { filterByCateName, filterByCateOther, getRibbonByCate } from 'helpers';
+import * as React from 'react';
 import qs from 'query-string';
 import { useLocation } from 'react-router';
 import styled from 'styled-components/macro';
+import { filterByCateName, filterByCateOther, getRibbonByCate } from 'helpers';
+import { RIBBON_NEW_VALUE, RIBBON_TOP_VALUE } from 'app/constants';
+import { Game } from 'app/models/game';
+import { useGames } from 'contexts';
 import ribbonNew from './assets/new_ribbon.png';
 import ribbonTop from './assets/top_ribbon.png';
 import { CurrentJackpot } from './CurrentJackpot';
@@ -100,6 +101,8 @@ const Card = styled.a`
   border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
+  width: 100%;
+  height: 100%;
   &:hover {
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);
@@ -114,6 +117,11 @@ const Card = styled.a`
       -webkit-transform: scale(1);
       -ms-transform: scale(1);
       transform: scale(1);
+      .display-card-group {
+        opacity: 0;
+        pointer-events: none;
+        z-index: -1;
+      }
     }
   }
   img.game-pic {

@@ -7,20 +7,24 @@ import { PageWrapper } from '../PageWrapper';
 export function NavBar() {
   return (
     <Wrapper>
-      <PageWrapper className="m-aligner-left">
-        <Nav />
-      </PageWrapper>
+      <div className="header-inner">
+        <PageWrapper className="hhead m-aligner-left">
+          <Nav />
+        </PageWrapper>
+      </div>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.header`
   height: ${StyleConstants.NAV_BAR_HEIGHT};
-  display: flex;
-  background: linear-gradient(269.9deg, #2E2E2E 0%, #373737 100%);
-  z-index: 2;
-
-  @supports (backdrop-filter: blur(10px)) {
-    backdrop-filter: blur(10px);
+  .header-inner {
+    height: ${StyleConstants.NAV_BAR_HEIGHT};
+    display: flex;
+    background: linear-gradient(269.9deg, #2E2E2E 0%, #373737 100%);
+    z-index: 5;
+    position: fixed;
+    left: 0;
+    right: 0;
   }
 `;
