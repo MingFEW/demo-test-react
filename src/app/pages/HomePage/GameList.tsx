@@ -4,7 +4,6 @@ import { useGames } from 'contexts';
 import { filterByCateName, filterByCateOther, getRibbonByCate } from 'helpers';
 import qs from 'query-string';
 import { useLocation } from 'react-router';
-import { useRetrieveJackPots } from 'services/jackpots';
 import styled from 'styled-components/macro';
 import ribbonNew from './assets/new_ribbon.png';
 import ribbonTop from './assets/top_ribbon.png';
@@ -27,28 +26,25 @@ export function GameList() {
   const renderRibbonImage = (game: Game): JSX.Element | null => {
     const currentRibbon = getRibbonByCate(game, currentCate);
     if (currentRibbon === RIBBON_NEW_VALUE) {
-      return <Ribbon className="ribbon" src={ribbonNew} alt="new" />;
+      return <Ribbon className="ribbon" imgUrl={ribbonNew} />;
     }
     if (currentRibbon === RIBBON_TOP_VALUE) {
-      return <Ribbon className="ribbon" src={ribbonTop} alt="top" />;
+      return <Ribbon className="ribbon" imgUrl={ribbonTop} />;
     }
     return null;
   };
 
   return (
-    <div className="pure-g" style={{ marginTop: 30 }}>
+    <Container>
       {newGames?.map((game: Game) => (
-        <Card key={game?.id} className="pure-u-1-5 card">
-          <img
-            src={game?.image}
-            alt={game.name}
-            className="game-pic"
-          />
+        <Card key={game?.id} className="card">
+          <img src={game?.image} alt={game.name} className="game-pic" />
           {renderRibbonImage(game)}
-          <CardGroup className="cardGroup">
+          <CardGroup className="display-card-group">
             <p>{game?.name}</p>
             <ButtonPlay>Play</ButtonPlay>
           </CardGroup>
+          <Overlay className="overlay display-card-group"></Overlay>
           <CurrentJackpot gameId={game.id} />
         </Card>
       ))}
@@ -57,9 +53,14 @@ export function GameList() {
           <h4>No game found</h4>
         </div>
       )}
-    </div>
+    </Container>
   );
 }
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
 const ButtonPlay = styled.button`
   background: linear-gradient(266.53deg, #3fc6c6 0%, #8dc63f 100%);
   border-radius: 8px;
@@ -68,52 +69,70 @@ const ButtonPlay = styled.button`
   outline: none;
   border: none;
 `;
-const Ribbon = styled.img`
+const Ribbon = styled.span<{ imgUrl: string }>`
   position: absolute;
-  right: 16px;
-  width: 62px;
+  right: 8px;
+  width: 72px;
+  height: 72px;
+  background: ${props =>
+    `url(${props?.imgUrl && props?.imgUrl}) no-repeat top center`};
+  background-size: 56px;
 `;
 const CardGroup = styled.div`
+  width: calc(100% - 16px);
+  height: calc(100% - 30px);
+  flex-direction: column;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  z-index: 3;
   color: white;
-  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  display: none;
+  visibility: hidden;
+`;
+const Overlay = styled.div`
+  height: 100%;
+  width: calc(100% - 16px);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: black;
+  opacity: 0.4;
+  border-radius: 8px;
+  color: white;
+  visibility: hidden;
 `;
 
-const Card = styled.div`
-  overflow: hidden;
-  transition: 0.3s;
+const Card = styled.a`
+  width: 20%;
+  margin-top: 30px;
+  transform 0.25s ease-out;
   padding-right: 16px;
-  padding-bottom: 30px;
   position: relative;
   &:hover {
     padding-right: 0px;
     cursor: pointer;
-    transform: scale(1.5);
-    z-index: 99;
-
-    &::before {
-      overflow: hidden;
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: black;
-      opacity: 0.5;
-      border-radius: 8px;
-      height: 82%;
-    }
-    .cardGroup {
-      display: block;
+    -webkit-transform: scale(1.02);
+    -ms-transform: scale(1.02);
+    transform: scale(1.02);
+    z-index: 2;
+    .display-card-group {
+      visibility: visible;
+      width: 100%;
     }
     .ribbon {
-      right: 0;
+      right: -8px;
     }
+    .overlay-jackpot {
+      display: none;
+    }
+  }
+  img.game-pic {
+    width: 100%;
+    height: auto;
+    border-radius: 8px
   }
 `;
