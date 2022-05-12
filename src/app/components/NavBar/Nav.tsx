@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { Link, useLocation } from 'react-router-dom';
 import qs from 'query-string';
-import classNames from 'classnames';
 import styled from 'styled-components/macro';
+import { Link, useLocation } from 'react-router-dom';
 import { COLORS } from 'styles/global-colors';
 import categoriesJson from './data/categories.json';
 
@@ -11,47 +10,19 @@ export function Nav() {
   const location = useLocation();
   const query = qs.parse(location.search);
   return (
-    <Wrapper>
+    <div>
+      <ul className="main-menu">
       {categories?.map(category => (
-        <CategoryLink
-          key={category.code}
-          to={`?categories=${category.code}`}
-          style={
-            query?.categories === category.code
-              ? {
-                  background:
-                    'linear-gradient(266.53deg, #3fc6c6 0%, #8dc63f 100%)',
-                  borderRadius: '8px',
-                }
-              : {}
-          }
-        >
-          {category?.name}
-        </CategoryLink>
+        <li key={category.code} className="menu-item">
+          <Link
+            className={`menu-itm-link ${(query?.categories === category.code) ? "active" : "" }`}
+            to={`?categories=${category.code}`}
+          >
+            {category?.name}
+          </Link>
+        </li>
       ))}
-    </Wrapper>
+      </ul>
+    </div>
   );
 }
-export const CategoryLink = styled(Link)`
-  color: ${COLORS.white};
-  cursor: pointer;
-  text-decoration: none;
-  display: flex;
-  padding: 0.25rem 2rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  align-items: center;
-
-  &:hover {
-    color: ${COLORS.accentGreen};
-  }
-
-  .icon {
-    margin-right: 0.25rem;
-  }
-`;
-
-const Wrapper = styled.nav`
-  display: flex;
-  margin-right: -1rem;
-`;

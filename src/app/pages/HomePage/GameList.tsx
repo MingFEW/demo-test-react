@@ -35,24 +35,28 @@ export function GameList() {
   };
 
   return (
-    <Container>
-      {newGames?.map((game: Game) => (
-        <Card key={game?.id} className="card">
-          <img src={game?.image} alt={game.name} className="game-pic" />
-          {renderRibbonImage(game)}
-          <CardGroup className="display-card-group">
-            <p>{game?.name}</p>
-            <ButtonPlay>Play</ButtonPlay>
-          </CardGroup>
-          <Overlay className="overlay display-card-group"></Overlay>
-          <CurrentJackpot gameId={game.id} />
-        </Card>
-      ))}
-      {newGames?.length <= 0 && (
-        <div className="pure-u-1-1">
-          <h4>No game found</h4>
-        </div>
-      )}
+    <Container className="container">
+      <div className="row">
+        {newGames?.map((game: Game) => (
+          <div className="cell-20 game-item">
+            <Card key={game?.id} className="card">
+              <img src={game?.image} alt={game.name} className="game-pic" />
+              {renderRibbonImage(game)}
+              <CardGroup className="display-card-group">
+                <p>{game?.name}</p>
+                <ButtonPlay>Play</ButtonPlay>
+              </CardGroup>
+              <Overlay className="overlay display-card-group"></Overlay>
+              <CurrentJackpot gameId={game.id} />
+            </Card>
+          </div>
+        ))}
+        {newGames?.length <= 0 && (
+          <div className="pure-u-1-1">
+            <h4>No game found</h4>
+          </div>
+        )}
+      </div>
     </Container>
   );
 }
@@ -108,9 +112,7 @@ const Overlay = styled.div`
 
 const Card = styled.a`
   width: 20%;
-  margin-top: 30px;
-  transform 0.25s ease-out;
-  padding-right: 16px;
+  transform: transform 0.25s ease-out;
   position: relative;
   &:hover {
     padding-right: 0px;

@@ -20,7 +20,7 @@ export function CurrentJackpot(props: CurrentJackpotProps) {
     const currentAmount = getAmountJackPot(props?.gameId, data?.data) || 0;
     setAmount(prev => prev + currentAmount);
   }, [data?.data]);
-  console.log(amount);
+
   return (
     <>
       {amount > 0 && (
