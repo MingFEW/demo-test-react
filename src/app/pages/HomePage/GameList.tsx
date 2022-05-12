@@ -8,6 +8,7 @@ import styled from 'styled-components/macro';
 import ribbonNew from './assets/new_ribbon.png';
 import ribbonTop from './assets/top_ribbon.png';
 import { CurrentJackpot } from './CurrentJackpot';
+import { COLORS } from 'styles/global-colors';
 
 export function GameList() {
   const { games } = useGames();
@@ -44,12 +45,13 @@ export function GameList() {
             <Card key={game?.id} className="card">
               <img src={game?.image} alt={game.name} className="game-pic" />
               {renderRibbonImage(game)}
-              <CardGroup className="display-card-group">
-                <p>{game?.name}</p>
-                <ButtonPlay>Play</ButtonPlay>
-              </CardGroup>
-              <Overlay className="overlay display-card-group"></Overlay>
               <CurrentJackpot gameId={game.id} />
+              <div className="display-card-group m-aligner">
+                <div>
+                  <p className="g-name">{game?.name}</p>
+                  <ButtonPlay>Play</ButtonPlay>
+                </div>
+              </div>
             </Card>
           </div>
         ))}
@@ -68,13 +70,16 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const ButtonPlay = styled.button`
+const ButtonPlay = styled.span`
   background: linear-gradient(266.53deg, #3fc6c6 0%, #8dc63f 100%);
   border-radius: 6px;
-  color: white;
-  padding: 4px 18px;
+  color: ${COLORS.white};
+  padding: 5px 15px;
+  font-size: 14px;
+  line-height: 1;
   outline: none;
   border: none;
+  display: inline-block;
 `;
 
 const Ribbon = styled.span<{ imgUrl: string }>`
@@ -87,39 +92,12 @@ const Ribbon = styled.span<{ imgUrl: string }>`
     `url(${props?.imgUrl && props?.imgUrl}) no-repeat top right`};
   background-size: 60px;
 `;
-const CardGroup = styled.div`
-  width: calc(100% - 16px);
-  height: calc(100% - 30px);
-  flex-direction: column;
-  position: absolute;
-  top: 0;
-  z-index: 3;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  visibility: hidden;
-`;
-const Overlay = styled.div`
-  height: 100%;
-  width: calc(100% - 16px);
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: black;
-  opacity: 0.4;
-  border-radius: 8px;
-  color: white;
-  visibility: hidden;
-`;
 
 const Card = styled.a`
   display: block;
   transition: transform 0.25s ease-out;
   position: relative;
-  border-radius: 8px;
+  border-radius: 10px;
   overflow: hidden;
   cursor: pointer;
   &:hover {
@@ -127,9 +105,42 @@ const Card = styled.a`
     -ms-transform: scale(1.1);
     transform: scale(1.1);
     z-index: 2;
+    .display-card-group {
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 3;
+    }
+    @media (max-width: 1024px) {
+      -webkit-transform: scale(1);
+      -ms-transform: scale(1);
+      transform: scale(1);
+    }
   }
   img.game-pic {
     width: 100%;
     height: auto;
+    z-index: 1;
+  }
+  .display-card-group {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 4;
+    background-color: rgba(0,0,0, 0.5);
+    text-align: center;
+
+    transition: all 0.25s ease-out;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+
+    .g-name {
+      color: ${COLORS.white};
+      margin: 0;
+      margin-bottom: 10px;
+      text-shadow: 1px 1px 2px rgba(0,0,0, 0.6);
+    }
   }
 `;

@@ -35,6 +35,9 @@ export const GlobalStyle = createGlobalStyle`
   .container {
     padding-left: 8px;
     padding-right: 8px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
   }
   .row {
     display: flex;
@@ -91,6 +94,7 @@ export const GlobalStyle = createGlobalStyle`
   .main-menu li.menu-item .menu-itm-link.active {
     background: linear-gradient(266.53deg, #3fc6c6 0%, #8dc63f 100%);
     border-radius: 8px;
+    text-shadow: 1px 1px 2px rgba(0,0,0, 0.3);
   }
   .main-menu li.menu-item a.menu-itm-link&:hover {
     color: ${COLORS.accentGreen};
@@ -98,5 +102,23 @@ export const GlobalStyle = createGlobalStyle`
   .main-menu li.menu-item .menu-itm-link.active&:hover {
     color: ${COLORS.white};
   }
+
+  // RESPONSIVE 
+  @media (max-width: 1024px) {
+    .cell-20 {
+      width: 25%;
+    }
+  }
+  @media (max-width: 969px) {
+    .cell-20 {
+      width: 33.33333%;
+    }
+  }
+  @media (max-width: 648px) {
+    .cell-20 {
+      width: 50%;
+    }
+  }
+
 `;
 

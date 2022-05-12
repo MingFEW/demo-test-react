@@ -3,7 +3,6 @@ import { Helmet } from 'react-helmet-async';
 
 // COMP
 import { NavBar } from 'app/components/NavBar';
-import { PageWrapper } from 'app/components/PageWrapper';
 import { GameList } from './GameList';
 
 export function HomePage() {
@@ -17,9 +16,9 @@ export function HomePage() {
         />
       </Helmet>
       <NavBar />
-      <PageWrapper className="pt-60">
+      <div className="pt-60">
         <GameList />
-      </PageWrapper>
+      </div>
     </>
   );
 }
