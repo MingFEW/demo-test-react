@@ -14,17 +14,17 @@ import { COLORS } from 'styles/global-colors';
 export function GameList() {
   const { games } = useGames();
   const location = useLocation();
-  let newGames = Array<Game>();
+  let _Games = Array<Game>();
   const query = qs.parse(location.search);
   const currentCate = query?.categories;
-
+  
   if (currentCate !== 'other') {
-    newGames = filterByCateName(games, query?.categories);
+    _Games = filterByCateName(games, query?.categories);
   } else {
-    newGames = filterByCateOther(games);
+    _Games = filterByCateOther(games);
   }
   if (!Boolean(query?.categories)) {
-    newGames = games;
+    _Games = games;
   }
 
   const renderRibbonImage = (game: Game): JSX.Element | null => {
@@ -41,9 +41,9 @@ export function GameList() {
   return (
     <Container className="container">
       <div className="row">
-        {newGames?.map((game: Game) => (
-          <div className="cell-20 game-item">
-            <Card key={game?.id} className="card">
+        {_Games?.map((game: Game) => (
+          <div key={game?.id} className="cell-20 game-item">
+            <Card className="card">
               <img src={game?.image} alt={game.name} className="game-pic" />
               {renderRibbonImage(game)}
               <CurrentJackpot gameId={game.id} />
@@ -56,7 +56,7 @@ export function GameList() {
             </Card>
           </div>
         ))}
-        {newGames?.length <= 0 && (
+        {_Games?.length <= 0 && (
           <div className="pure-u-1-1">
             <h4>No game found</h4>
           </div>
