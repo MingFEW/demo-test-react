@@ -1,4 +1,4 @@
-import { Jackpot } from 'app/models/JackPot';
+import { Jackpot } from 'app/models/Jackpot';
 
 export const getAmountJackPot = (
   gameId: string,
