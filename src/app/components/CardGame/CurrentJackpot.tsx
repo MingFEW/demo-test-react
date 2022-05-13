@@ -1,39 +1,45 @@
-import * as React from 'react';
-
-import { getAmountJackPot } from 'helpers';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/macro';
-import { useEffect, useState } from 'react';
+
 import { useRetrieveJackPots } from 'services/jackpots';
 import { COLORS } from 'styles/global-colors';
-import { formatCurrency } from 'utils/formatter';
+import { getAmountJackPot } from 'helpers';
+
 interface CurrentJackpotProps {
   gameId: string;
 }
-export function CurrentJackpot(props: CurrentJackpotProps) {
-  const [amount, setAmount] = useState<number>(0);
-  const { data } = useRetrieveJackPots(
-    {},
-    {
-      cacheTime: 0,
-      refetchOnWindowFocus: false,
-      refetchInterval: 3000,
-    },
-  );
-  useEffect(() => {
-    const currentAmount = getAmountJackPot(props?.gameId, data?.data) || 0;
-    setAmount(prev => prev + currentAmount);
-  }, [data?.data]);
 
-  return (
-    <>
-      {amount > 0 && (
-        <Wrapper>
-          <span className="amount-jackpot">{formatCurrency(amount)}</span>
-        </Wrapper>
-      )}
-    </>
-  );
-}
+export const CurrentJackpot: React.FC<CurrentJackpotProps> = React.memo(
+  props => {
+    const { gameId } = props;
+    const [amount, setAmount] = useState<number>(0);
+    const { data: response } = useRetrieveJackPots(
+      {},
+      {
+        cacheTime: 0,
+        refetchOnWindowFocus: false,
+        refetchInterval: 3000,
+      },
+    );
+    const { data } = response || {};
+
+    useEffect(() => {
+      const currentAmount = getAmountJackPot(gameId, data) || 0;
+      setAmount(prev => prev + currentAmount);
+    }, [data, gameId]);
+
+    return (
+      <>
+        {amount > 0 && (
+          <Wrapper>
+            <span className="amount-jackpot">${amount}</span>
+          </Wrapper>
+        )}
+      </>
+    );
+  },
+  (prevProps, nextProps) => prevProps.gameId === nextProps.gameId,
+);
 
 const Wrapper = styled.div`
   position: absolute;
@@ -41,6 +47,7 @@ const Wrapper = styled.div`
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.5);
+
   .amount-jackpot {
     color: ${COLORS.grey20};
     font-size: 11px;

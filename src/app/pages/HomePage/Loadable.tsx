@@ -3,9 +3,9 @@
  */
 
 import * as React from 'react';
+import styled from 'styled-components/macro';
 import { lazyLoad } from 'utils/loadable';
 import { LoadingIndicator } from 'app/components/LoadingIndicator';
-import styled from 'styled-components/macro';
 
 const LoadingWrapper = styled.div`
   width: 100%;

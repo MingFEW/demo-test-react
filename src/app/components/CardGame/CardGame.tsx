@@ -1,24 +1,27 @@
-import * as React from 'react';
+import React, { memo } from 'react';
+import { useLocation } from 'react-router';
+import qs from 'query-string';
+import styled from 'styled-components/macro';
+import Img from 'react-cool-img';
 
 import { RIBBON_NEW_VALUE, RIBBON_TOP_VALUE } from 'app/constants';
-import { Game } from 'app/models/game';
+import { Game } from 'app/models/Game';
 import { getRibbonByCate } from 'helpers';
-import qs from 'query-string';
-import { useLocation } from 'react-router';
-import styled from 'styled-components/macro';
 import { COLORS } from 'styles/global-colors';
-import { ribbonNew, ribbonTop } from 'utils/assetUrl';
-import { CurrentJackpot } from './CurrentJackpot';
+import { imageLoading, ribbonNew, ribbonTop } from 'utils/assetUrl';
 
-interface CardGameProps {
+// Components
+import { CurrentJackpot } from './CurrentJackpot';
+interface Props {
   game: Game;
 }
 
-export default function CardGame(props: CardGameProps) {
-  const game = props.game;
+const CardGame: React.FC<Props> = props => {
+  const { game } = props;
   const location = useLocation();
   const query = qs.parse(location?.search);
   const currentCate = query?.categories;
+  const { id, image, name } = game || {};
 
   const renderRibbonImage = (game: Game): JSX.Element | null => {
     const currentRibbon = getRibbonByCate(game, currentCate);
@@ -33,22 +36,40 @@ export default function CardGame(props: CardGameProps) {
 
   return (
     <div className="cell-20 game-item">
-      <Card key={game?.id} className="card">
-        <img src={game?.image} alt={game.name} className="game-pic" />
+      <Card key={id} className="card">
+        <Img
+          placeholder={imageLoading}
+          src={image}
+          alt={name}
+          className="game-pic"
+        />
         {renderRibbonImage(game)}
-        <CurrentJackpot gameId={game.id} />
+        <CurrentJackpot gameId={id} />
         <div className="display-card-group m-aligner">
           <div>
-            <p className="g-name">{game?.name}</p>
+            <p className="g-name">{name}</p>
             <ButtonPlay>Play</ButtonPlay>
           </div>
         </div>
       </Card>
     </div>
   );
-}
+};
+
+const MemoizedCardGame = memo(
+  CardGame,
+  (prevProps, nextProps) =>
+    JSON.stringify(prevProps.game) === JSON.stringify(nextProps.game),
+);
+
+export default MemoizedCardGame;
+
 const ButtonPlay = styled.span`
-  background: linear-gradient(266.53deg, #3fc6c6 0%, #8dc63f 100%);
+  background: linear-gradient(
+    266.53deg,
+    ${COLORS.seaSerpent} 0%,
+    ${COLORS.accentGreen} 100%
+  );
   border-radius: 6px;
   color: ${COLORS.white};
   padding: 5px 15px;
@@ -79,6 +100,7 @@ const Card = styled.a`
   cursor: pointer;
   width: 100%;
   height: 100%;
+  max-height: 132px;
   &:hover {
     -webkit-transform: scale(1.1);
     -ms-transform: scale(1.1);

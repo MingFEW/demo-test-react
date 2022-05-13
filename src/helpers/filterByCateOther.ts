@@ -1,4 +1,4 @@
-import { Game } from 'app/models/game';
+import { Game } from 'app/models/Game';
 
 export const filterByCateOther = (games: Array<Game>): Array<Game> => {
   const newGames = Array<Game>();

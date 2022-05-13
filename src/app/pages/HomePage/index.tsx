@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Helmet } from 'react-helmet-async';
 
-// COMP
+// Components
 import { NavBar } from 'app/components/NavBar';
-import { GameList } from './GameList';
+import { GameList } from './components/GameList';
 
 export function HomePage() {
   return (

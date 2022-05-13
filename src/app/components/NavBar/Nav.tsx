@@ -1,25 +1,34 @@
-import * as React from 'react';
-
-import { useState, useEffect } from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useState, useEffect, useCallback, memo } from 'react';
 import qs from 'query-string';
 import { useLocation } from 'react-router';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
-import categoriesJson from './data/categories.json';
+
 import useRedirect from 'hooks/useRedirect';
 
-export function Nav() {
-  const categories = categoriesJson;
+import categoriesJson from './data/categories.json';
+import { COLORS } from 'styles/global-colors';
+
+export const Nav: React.FC = memo(() => {
   const location = useLocation();
   const query = qs.parse(location?.search);
-  const [isOpenBtn, setIsOpenBtn] = useState(false);
-  const toggleMenu = () => setIsOpenBtn(prev => !prev);
   const { redirectTo } = useRedirect();
+  const [isOpenBtn, setIsOpenBtn] = useState<boolean>(false);
+
+  const categories = categoriesJson;
+
   useEffect(() => {
-    if (location?.search === '') {
+    if (!location?.search) {
       redirectTo('?categories=new');
     }
-  }, []);
+  }, [location.search]);
+
+  const toggleMenu = useCallback(
+    () => setIsOpenBtn(prev => !prev),
+    [isOpenBtn],
+  );
+
   return (
     <MenuWrapper>
       <ul
@@ -76,7 +85,7 @@ export function Nav() {
       </div>
     </MenuWrapper>
   );
-}
+});
 
 const MenuWrapper = styled.div`
   .mobile-menu-btn {
@@ -88,7 +97,11 @@ const MenuWrapper = styled.div`
     justify-content: center;
     cursor: pointer;
     &.open {
-      background: linear-gradient(266.53deg, #3fc6c6 0%, #8dc63f 100%);
+      background: linear-gradient(
+        266.53deg,
+        ${COLORS.seaSerpent} 0%,
+        ${COLORS.accentGreen} 100%
+      );
     }
   }
 `;

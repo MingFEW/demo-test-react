@@ -7,16 +7,17 @@ exports[`CardGame Should render the correct snapshot 1`] = `
   <CardGame__Card
     className="card"
   >
-    <img
+    <Memo
       alt="Test Game"
       className="game-pic"
+      placeholder="loading.gif"
       src="//stage.whgstage.com/scontent/images/games/NETHEWISHMASTER.jpg"
     />
     <CardGame__Ribbon
       className="ribbon"
       imgUrl="new_ribbon.png"
     />
-    <CurrentJackpot
+    <Memo
       gameId="Test"
     />
     <div

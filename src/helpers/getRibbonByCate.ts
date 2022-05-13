@@ -1,5 +1,5 @@
 import { RIBBON_NEW_VALUE, RIBBON_TOP_VALUE } from 'app/constants';
-import { Game } from 'app/models/game';
+import { Game } from 'app/models/Game';
 
 const isNewGame = (currentGame: Game): string | undefined =>
   currentGame.categories.find((category: string) => category === 'new');

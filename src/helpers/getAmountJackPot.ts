@@ -1,13 +1,10 @@
-import { JackPot } from 'app/models/jackPot';
+import { Jackpot } from 'app/models/Jackpot';
 
 export const getAmountJackPot = (
   gameId: string,
-  jackpots: Array<JackPot> | undefined,
+  jackpots: Array<Jackpot> | undefined,
 ): number => {
   const currentJackpot = jackpots?.find(jackpot => jackpot.game === gameId);
 
   return currentJackpot?.amount || 0;
-  // const filteredJackpots = jackpots?.filter(jackpot => jackpot.game === gameId);
-  // console.log(filteredJackpots);
-  // return filteredJackpots
 };

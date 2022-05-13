@@ -8,7 +8,7 @@ exports[`<NavBar /> should match snapshot 1`] = `
     <PageWrapper
       className="hhead m-aligner-left"
     >
-      <Nav />
+      <Memo />
     </PageWrapper>
   </div>
 </NavBar__Wrapper>
