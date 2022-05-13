@@ -1,7 +1,8 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useCallback, memo } from 'react';
 import qs from 'query-string';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 
 import useRedirect from 'hooks/useRedirect';
@@ -11,10 +12,10 @@ import { COLORS } from 'styles/global-colors';
 
 export const Nav: React.FC = memo(() => {
   const location = useLocation();
+  const query = qs.parse(location?.search);
   const { redirectTo } = useRedirect();
   const [isOpenBtn, setIsOpenBtn] = useState<boolean>(false);
 
-  const query = qs.parse(location.search);
   const categories = categoriesJson;
 
   useEffect(() => {
