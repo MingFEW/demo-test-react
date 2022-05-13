@@ -1,8 +1,8 @@
-import { JackPot } from 'app/models/JackPot';
+import { Jackpot } from 'app/models/Jackpot';
 
 export const getAmountJackPot = (
   gameId: string,
-  jackpots: Array<JackPot> | undefined,
+  jackpots: Array<Jackpot> | undefined,
 ): number => {
   const currentJackpot = jackpots?.find(jackpot => jackpot.game === gameId);
 
