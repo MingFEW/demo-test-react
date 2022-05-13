@@ -122,6 +122,19 @@ export const GlobalStyle = createGlobalStyle`
     color: ${COLORS.white};
   }
 
+  
+
+  // RESPONSIVE 
+  @media (max-width: 1024px) {
+    .cell-20 {
+      width: 25%;
+    }
+  }
+  @media (max-width: 969px) {
+    .cell-20 {
+      width: 33.33333%;
+    }
+  }
   @media (max-width: 890px) {
     .main-menu.large-screen {
       position: absolute;
@@ -140,19 +153,6 @@ export const GlobalStyle = createGlobalStyle`
       display: inline-block;
     }
   }
-
-  // RESPONSIVE 
-  @media (max-width: 1024px) {
-    .cell-20 {
-      width: 25%;
-    }
-  }
-  @media (max-width: 969px) {
-    .cell-20 {
-      width: 33.33333%;
-    }
-  }
-  
   @media (max-width: 648px) {
     .cell-20 {
       width: 50%;

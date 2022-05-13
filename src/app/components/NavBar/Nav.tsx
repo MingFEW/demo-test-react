@@ -63,6 +63,10 @@ const MenuWrapper = styled.div`
   .header-mobile {
     padding: 0 16px;
     width: 100vw;
+    display: none;
+    @media (max-width: 890px) {
+      display: flex;
+    }
   }
   .mobile-menu-btn {
     display: flex;
