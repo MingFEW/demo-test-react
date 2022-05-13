@@ -19,7 +19,7 @@ interface Props {
 const CardGame: React.FC<Props> = props => {
   const { game } = props;
   const location = useLocation();
-  const query = qs.parse(location.search);
+  const query = qs.parse(location?.search);
   const currentCate = query?.categories;
   const { id, image, name } = game || {};
 

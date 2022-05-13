@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<App /> should render and match the snapshot 1`] = `
-<BrowserRouter>
+<mockConstructor>
   <Helmet
-    defaultTitle="React Boilerplate"
+    defaultTitle="React Test DEMO"
     defer={true}
     encodeSpecialCharacters={true}
     htmlAttributes={
@@ -12,23 +12,23 @@ exports[`<App /> should render and match the snapshot 1`] = `
       }
     }
     prioritizeSeoTags={false}
-    titleTemplate="%s - React Boilerplate"
+    titleTemplate="%s - React Test DEMO"
   >
     <meta
-      content="A React Boilerplate application"
+      content="A React Test DEMO application"
       name="description"
     />
   </Helmet>
-  <Switch>
-    <Route
+  <mockConstructor>
+    <mockConstructor
       component={[Function]}
       exact={true}
-      path="/"
+      path=""
     />
-    <Route
+    <mockConstructor
       component={[Function]}
     />
-  </Switch>
+  </mockConstructor>
   <Memo(l) />
-</BrowserRouter>
+</mockConstructor>
 `;

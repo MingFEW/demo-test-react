@@ -1,36 +1,22 @@
 import * as React from 'react';
-import { render } from '@testing-library/react';
+import { createRenderer } from 'react-test-renderer/shallow';
 
 import { Link } from '../index';
 import { themes } from 'styles/theme/themes';
-import { DefaultTheme } from 'styled-components';
 import { MemoryRouter } from 'react-router-dom';
 
-const renderWithTheme = (theme?: DefaultTheme) => {
-  return render(
+const renderer = createRenderer();
+
+describe('<Link />', () => {
+  renderer.render(
     <MemoryRouter>
-      <Link to="/test" theme={theme || themes.light}>
+      <Link to="/test" theme={themes.light}>
         HeaderLink
       </Link>
     </MemoryRouter>,
   );
-};
-
-describe('<Link />', () => {
+  const renderedOutput = renderer.getRenderOutput();
   it('should match snapshot', () => {
-    const link = renderWithTheme();
-    expect(link.container.firstChild).toMatchSnapshot();
-  });
-
-  it('should have theme', () => {
-    const link = renderWithTheme();
-    expect(link.container.firstChild).toHaveStyle(
-      `color: ${themes.light.primary}`,
-    );
-  });
-
-  it('should have a class attribute', () => {
-    const link = renderWithTheme();
-    expect(link.queryByText('HeaderLink')).toHaveAttribute('class');
+    expect(renderedOutput).toMatchSnapshot();
   });
 });
