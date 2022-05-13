@@ -15,8 +15,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
-    "jsx": "react-jsx",
-    "baseUrl": "./src"
+    "jsx": "react",
+    "baseUrl": "./src" 
   },
   "include": ["src", "internals/startingTemplate/**/*"],
   "ts-node": {

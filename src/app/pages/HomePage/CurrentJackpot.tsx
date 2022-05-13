@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { getAmountJackPot } from 'helpers';
 import styled from 'styled-components/macro';
 import { useEffect, useState } from 'react';
