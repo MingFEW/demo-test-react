@@ -1,5 +1,6 @@
-import { Game } from 'app/models/game';
+import * as React from 'react';
 import { createContext, useContext, ReactNode } from 'react';
+import { Game } from 'app/models/game';
 import { useRetrieveGames } from 'services/game';
 
 interface GameContextProviderProps {
