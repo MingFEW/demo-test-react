@@ -2,7 +2,7 @@ import { useQuery, UseQueryOptions } from 'react-query';
 import { AxiosResponse, AxiosError } from 'axios';
 
 import httpClient from 'utils/httpClient';
-import { Game } from 'app/models/game';
+import { Game } from 'app/models/Game';
 
 export const RETRIEVE_GAMES = '/front-end-test/games.php';
 

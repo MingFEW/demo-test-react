@@ -13,6 +13,7 @@ import * as ReactDOM from 'react-dom';
 
 // Use consistent styling
 import 'sanitize.css/sanitize.css';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 import { App } from 'app';
 

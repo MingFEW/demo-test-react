@@ -2,7 +2,7 @@ import { useQuery, UseQueryOptions } from 'react-query';
 import { AxiosResponse, AxiosError } from 'axios';
 
 import httpClient from 'utils/httpClient';
-import { JackPot } from 'app/models/jackPot';
+import { JackPot } from 'app/models/JackPot';
 
 export const RETRIEVE_JACK_POTS = '/front-end-test/jackpots.php';
 

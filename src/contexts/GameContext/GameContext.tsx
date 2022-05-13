@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createContext, useContext, ReactNode } from 'react';
-import { Game } from 'app/models/game';
+import { Game } from 'app/models/Game';
 import { useRetrieveGames } from 'services/game';
 
 interface GameContextProviderProps {
@@ -8,16 +8,18 @@ interface GameContextProviderProps {
 }
 interface IGameContext {
   games: Game[];
+  isFetching: boolean;
 }
 
 const GameContext = createContext<IGameContext>({
   games: [],
+  isFetching: true,
 });
 
 export const GameProvider: React.FC<GameContextProviderProps> = ({
   children,
 }: GameContextProviderProps) => {
-  const { data } = useRetrieveGames(
+  const { data, isFetching } = useRetrieveGames(
     {},
     {
       cacheTime: 0,
@@ -29,6 +31,7 @@ export const GameProvider: React.FC<GameContextProviderProps> = ({
     <GameContext.Provider
       value={{
         games: data?.data || [],
+        isFetching,
       }}
     >
       {children}

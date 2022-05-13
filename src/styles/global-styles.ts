@@ -111,7 +111,7 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 8px;
   }
   .main-menu li.menu-item .menu-itm-link.active {
-    background: linear-gradient(266.53deg, #3fc6c6 0%, #8dc63f 100%);
+    background: linear-gradient(266.53deg, ${COLORS.seaSerpent} 0%, ${COLORS.accentGreen} 100%);
     border-radius: 8px;
     text-shadow: 1px 1px 2px rgba(0,0,0, 0.3);
   }
@@ -160,7 +160,7 @@ export const GlobalStyle = createGlobalStyle`
       left: 0;
       right: 0;
       padding: 16px;
-      background: #545454;
+      background: ${COLORS.grey2};
     }
     .main-menu.large-screen.open {
       top: 64px;

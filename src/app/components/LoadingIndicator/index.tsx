@@ -1,13 +1,16 @@
-import * as React from 'react';
+import React, { FC, memo } from 'react';
 import styled, { keyframes } from 'styled-components/macro';
+interface SvgProps {
+  small?: boolean;
+}
 
 interface Props extends SvgProps {}
 
-export const LoadingIndicator = (props: Props) => (
+export const LoadingIndicator: FC<Props> = memo(props => (
   <Svg viewBox="-24 -24 48 48" small={props.small}>
     <Circle cx="0" cy="0" r="20" fill="none" strokeWidth="4"></Circle>
   </Svg>
-);
+));
 
 const speed = 1.5;
 
@@ -31,10 +34,6 @@ const dash = keyframes`
     stroke-dashoffset: -124;
   }
 `;
-
-interface SvgProps {
-  small?: boolean;
-}
 
 const Svg = styled.svg<SvgProps>`
   animation: ${rotate} ${speed * 1.75}s linear infinite;

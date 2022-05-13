@@ -1,4 +1,4 @@
-import { JackPot } from 'app/models/jackPot';
+import { JackPot } from 'app/models/JackPot';
 
 export const getAmountJackPot = (
   gameId: string,
@@ -7,7 +7,4 @@ export const getAmountJackPot = (
   const currentJackpot = jackpots?.find(jackpot => jackpot.game === gameId);
 
   return currentJackpot?.amount || 0;
-  // const filteredJackpots = jackpots?.filter(jackpot => jackpot.game === gameId);
-  // console.log(filteredJackpots);
-  // return filteredJackpots
 };

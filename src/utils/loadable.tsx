@@ -1,5 +1,4 @@
 import React, { lazy, Suspense } from 'react';
-
 interface Opts {
   fallback: React.ReactNode;
 }
