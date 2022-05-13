@@ -1,7 +1,10 @@
-import styled from 'styled-components/macro';
+import React from 'react';
+import styled from 'styled-components';
 import { Link as RouterLink } from 'react-router-dom';
 
-export const Link = styled(RouterLink)`
+export const Link = styled<typeof RouterLink>(props => (
+  <RouterLink {...props} />
+))`
   text-decoration: none;
 
   &:hover {

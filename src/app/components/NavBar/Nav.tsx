@@ -2,7 +2,8 @@ import * as React from 'react';
 
 import { useState, useEffect } from 'react';
 import qs from 'query-string';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components/macro';
 import categoriesJson from './data/categories.json';
 import useRedirect from 'hooks/useRedirect';
@@ -10,7 +11,7 @@ import useRedirect from 'hooks/useRedirect';
 export function Nav() {
   const categories = categoriesJson;
   const location = useLocation();
-  const query = qs.parse(location.search);
+  const query = qs.parse(location?.search);
   const [isOpenBtn, setIsOpenBtn] = useState(false);
   const toggleMenu = () => setIsOpenBtn(prev => !prev);
   const { redirectTo } = useRedirect();

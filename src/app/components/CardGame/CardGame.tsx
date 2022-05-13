@@ -17,7 +17,7 @@ interface CardGameProps {
 export default function CardGame(props: CardGameProps) {
   const game = props.game;
   const location = useLocation();
-  const query = qs.parse(location.search);
+  const query = qs.parse(location?.search);
   const currentCate = query?.categories;
 
   const renderRibbonImage = (game: Game): JSX.Element | null => {

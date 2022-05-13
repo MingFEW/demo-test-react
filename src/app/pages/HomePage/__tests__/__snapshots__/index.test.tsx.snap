@@ -11,14 +11,15 @@ exports[`<HomePage /> should render and match the snapshot 1`] = `
       Home Page
     </title>
     <meta
-      content="A React Boilerplate application homepage"
+      content="Game list"
       name="description"
     />
   </Helmet>
   <NavBar />
-  <PageWrapper>
-    <Masthead />
-    <Features />
-  </PageWrapper>
+  <div
+    className="pt-60"
+  >
+    <GameList />
+  </div>
 </React.Fragment>
 `;

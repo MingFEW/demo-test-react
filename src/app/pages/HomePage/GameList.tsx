@@ -14,7 +14,7 @@ export function GameList() {
   let _Games = Array<Game>();
   const query = qs.parse(location.search);
   const currentCate = query?.categories;
-  
+
   if (currentCate !== 'other') {
     _Games = filterByCateName(games, query?.categories);
   } else {

@@ -2,9 +2,14 @@
 
 exports[`<NavBar /> should match snapshot 1`] = `
 <NavBar__Wrapper>
-  <PageWrapper>
-    <Logo />
-    <Nav />
-  </PageWrapper>
+  <div
+    className="header-inner"
+  >
+    <PageWrapper
+      className="hhead m-aligner-left"
+    >
+      <Nav />
+    </PageWrapper>
+  </div>
 </NavBar__Wrapper>
 `;
