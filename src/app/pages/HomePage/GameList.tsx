@@ -1,11 +1,12 @@
-import { CardGame } from 'app/components';
+import * as React from 'react';
+import qs from 'query-string';
+import { useLocation } from 'react-router';
+import styled from 'styled-components/macro';
+
 import { Game } from 'app/models/game';
 import { useGames } from 'contexts';
 import { filterByCateName, filterByCateOther } from 'helpers';
-import qs from 'query-string';
-import * as React from 'react';
-import { useLocation } from 'react-router';
-import styled from 'styled-components/macro';
+import { CardGame } from 'app/components';
 
 export function GameList() {
   const { games } = useGames();
