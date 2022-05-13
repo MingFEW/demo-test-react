@@ -3,7 +3,7 @@ import { createRenderer } from 'react-test-renderer/shallow';
 import { render } from '@testing-library/react';
 
 import CardGame from '../CardGame';
-import { Game } from 'app/models/game';
+import { Game } from 'app/models/Game';
 
 const renderer = createRenderer();
 
