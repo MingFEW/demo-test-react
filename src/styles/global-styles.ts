@@ -121,6 +121,25 @@ export const GlobalStyle = createGlobalStyle`
   .main-menu li.menu-item .menu-itm-link.active&:hover {
     color: ${COLORS.white};
   }
+  .header-mobile {
+    padding: 0 16px;
+    width: 100vw;
+    visibility: hidden;
+    height: 0;
+  }
+
+  // RESPONSIVE 
+  @media (max-width: 1024px) {
+    .cell-20 {
+      width: 25%;
+    }
+  }
+
+  @media (max-width: 969px) {
+    .cell-20 {
+      width: 33.33333%;
+    }
+  }
 
   
 
@@ -138,11 +157,16 @@ export const GlobalStyle = createGlobalStyle`
   @media (max-width: 890px) {
     .main-menu.large-screen {
       position: absolute;
-      top: 64px;
       left: 0;
       right: 0;
       padding: 16px;
       background: #545454;
+    }
+    .main-menu.large-screen.open {
+      top: 64px;
+    }
+    .main-menu.large-screen.close {
+      top: -500px;
     }
 
     .main-menu li.menu-item {
@@ -152,11 +176,14 @@ export const GlobalStyle = createGlobalStyle`
     .main-menu li.menu-item .menu-itm-link.active {
       display: inline-block;
     }
+    .header-mobile {
+      visibility: visible;
+    }
   }
+  
   @media (max-width: 648px) {
     .cell-20 {
       width: 50%;
     }
   }
 `;
-

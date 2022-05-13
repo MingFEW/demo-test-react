@@ -10,10 +10,7 @@ export function HomePage() {
     <>
       <Helmet>
         <title>Home Page</title>
-        <meta
-          name="description"
-          content="Game list"
-        />
+        <meta name="description" content="Game list" />
       </Helmet>
       <NavBar />
       <div className="pt-60">
