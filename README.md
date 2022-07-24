@@ -151,5 +151,4 @@ This project is licensed under the MIT license, Copyright (c) 2019 Maximilian St
 For more information see `LICENSE.md`.
 
 
-### Try it with Morpheus Labs SEED
-[![Open in SEED](https://morpheus-seed.infura-ipfs.io/ipfs/QmdLQKk1ygXJLN9aLp5gmyUi7sz51Cv8nY4dCgLWTiUr6R)](https://bps.morpheuslabs.io/pages/uploadproject/?f=factory7swm20vmcob4m9dv&amp;p=https://github.com/chrisdesilva/nba-scoreboard.git)
+### Try it with Morpheus Labs SEED<br>[![Open in SEED](https://morpheus-seed.infura-ipfs.io/ipfs/QmdLQKk1ygXJLN9aLp5gmyUi7sz51Cv8nY4dCgLWTiUr6R)](https://bps.morpheuslabs.io/pages/uploadproject/?f=factory7swm20vmcob4m9dv&amp;p=https://github.com/chrisdesilva/nba-scoreboard.git)
